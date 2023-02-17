@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter } from 'rxjs';
 import { Cart, CartItem } from '../models/cart.model';
 
 @Injectable({
@@ -27,7 +27,33 @@ export class CartService {
 
     this._snackBar.open('1 item added to cart.', 'OK', { duration: 3000});
 
-    console.log(this.cart.value)
+  }
+
+  removeQuantity(item: CartItem): void {
+    let itemForRemoval!: CartItem;
+
+    const items = [...this.cart.value.items];
+
+    let filteredItems = items.map((_item) => {
+      if(_item.id === item.id){
+        _item.quantity --;
+
+        if(_item.quantity === 0) {
+          itemForRemoval = _item;
+        }
+      }
+
+      return _item;
+     
+    })
+
+    if(itemForRemoval) {
+      filteredItems = this.removeFromCart(itemForRemoval);
+    }
+
+    this.cart.next({ items: filteredItems});
+    this._snackBar.open('1 item removed from cart', 'OK', { duration: 3000});
+
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -39,6 +65,20 @@ export class CartService {
   clearCart(): void {
     this.cart.next({items: []});
     this._snackBar.open('Cart is cleared.', 'OK', { duration: 3000});
+  }
+
+  removeFromCart(item: CartItem, update = true): Array<CartItem> {
+    const filteredItems = this.cart.value.items.filter(
+      (_items) => _items.id != item.id
+    )
+
+    if(update) {
+      this.cart.next({items: filteredItems});
+      this._snackBar.open('1 Item removed from cart.', 'OK', { duration: 3000});
+    }
+
+    return filteredItems;
+
   }
 
 }
