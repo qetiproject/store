@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, filter } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Cart, CartItem } from '../models/cart.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
 
   cart = new BehaviorSubject<Cart>({ items: []});
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(
+    // private _snackBar: MatSnackBar
+  ) { }
 
   addToCart(item: CartItem): void {
     const items = [...this.cart.value.items];
@@ -25,7 +27,7 @@ export class CartService {
 
     this.cart.next({ items });
 
-    this._snackBar.open('1 item added to cart.', 'OK', { duration: 3000});
+    // this._snackBar.open('1 item added to cart.', 'OK', { duration: 3000});
 
   }
 
@@ -52,7 +54,7 @@ export class CartService {
     }
 
     this.cart.next({ items: filteredItems});
-    this._snackBar.open('1 item removed from cart', 'OK', { duration: 3000});
+    // this._snackBar.open('1 item removed from cart', 'OK', { duration: 3000});
 
   }
 
@@ -64,7 +66,7 @@ export class CartService {
 
   clearCart(): void {
     this.cart.next({items: []});
-    this._snackBar.open('Cart is cleared.', 'OK', { duration: 3000});
+    // this._snackBar.open('Cart is cleared.', 'OK', { duration: 3000});
   }
 
   removeFromCart(item: CartItem, update = true): Array<CartItem> {
@@ -74,7 +76,7 @@ export class CartService {
 
     if(update) {
       this.cart.next({items: filteredItems});
-      this._snackBar.open('1 Item removed from cart.', 'OK', { duration: 3000});
+      // this._snackBar.open('1 Item removed from cart.', 'OK', { duration: 3000});
     }
 
     return filteredItems;
