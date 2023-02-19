@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Cart } from './models/cart.model';
 import { CartService } from './services/cart.service';
 
@@ -9,6 +10,7 @@ import { CartService } from './services/cart.service';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule
   ],
   providers: [CartService]
 })
