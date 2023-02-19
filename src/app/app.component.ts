@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
 import { Cart } from './models/cart.model';
 import { CartService } from './services/cart.service';
 
@@ -10,7 +11,8 @@ import { CartService } from './services/cart.service';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    HeaderComponent
   ],
   providers: [CartService]
 })
@@ -18,12 +20,12 @@ export class AppComponent {
   cart: Cart = {items: []};
 
   constructor(
-    // private cartService: CartService
+    private cartService: CartService
   ){}
 
   ngOnInit() {
-    // this.cartService.cart.subscribe((_cart) => {
-    //   this.cart = _cart;
-    // })
+    this.cartService.cart.subscribe((_cart) => {
+      this.cart = _cart;
+    })
   }
 }

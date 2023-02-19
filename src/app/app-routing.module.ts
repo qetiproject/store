@@ -8,11 +8,11 @@ import { StoreService } from './services/store.service';
  export const routes: Routes = [
   {
     path: '', 
-    redirectTo: 'home', 
+    redirectTo: '', 
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./pages/pages-routing.module').then(m => m.PAGES_ROUTES),
     providers: [
         // {

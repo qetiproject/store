@@ -16,12 +16,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const MaterialModule = [
-    CommonModule,
-    BrowserModule,
-    RouterModule,
-    BrowserAnimationsModule,
+    // CommonModule,
+    // RouterModule,
+    // BrowserAnimationsModule,
     MatSidenavModule,
     MatGridListModule,
     MatMenuModule,
@@ -34,5 +34,6 @@ export const MaterialModule = [
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
-    HttpClientModule,
+    // FormsModule,
+    // ReactiveFormsModule,
 ]

@@ -1,23 +1,35 @@
-// import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-// import { Product } from 'src/app/models/product.model';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Product } from 'src/app/models/product.model';
+import { MaterialModule } from 'src/app/pages/material.module';
 
-// @Component({
-//   selector: 'app-product-box',
-//   templateUrl: './product-box.component.html'
-// })
-// export class ProductBoxComponent implements OnInit {
+@Component({
+  selector: 'app-product-box',
+  templateUrl: './product-box.component.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    MaterialModule
+  ]
+})
+export class ProductBoxComponent implements OnInit {
 
-//   @Input() fullWidthMode = false;
-//   @Input() product: Product | undefined ;
-//   @Output() addToCart = new EventEmitter();
+  @Input() fullWidthMode = false;
+  @Input() product: Product | undefined ;
+  @Output() addToCart = new EventEmitter();
 
-//   constructor() { }
+  constructor() { }
 
-//   ngOnInit(): void {
-//   }
+  ngOnInit(): void {
+  }
 
-//   onAddToCart(): void {
-//     this.addToCart.emit(this.product);
-//   }
+  onAddToCart(): void {
+    console.log(this.product, 'product')
+    this.addToCart.emit(this.product);
+  }
 
-// }
+}
