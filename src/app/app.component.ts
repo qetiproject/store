@@ -15,8 +15,13 @@ export class AppComponent {
   ){}
 
   ngOnInit() {
+    this.getCart();
+  }
+  
+  getCart() {
     this.cartService.cart.subscribe((_cart) => {
       this.cart = _cart;
     })
   }
+  
 }

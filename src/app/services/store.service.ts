@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, shareReplay, take, tap } from 'rxjs';
 import { STORE_BASE_URL } from '../app-routing.module';
 import { Product } from '../models/product.model';
 
@@ -9,6 +9,12 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class StoreService {
+
+  private products = new BehaviorSubject<Array<Product>>([]);
+  products$: Observable<Array<Product>> = this.products.asObservable();
+
+  private categories = new BehaviorSubject<Array<String>>([]);
+  categories$: Observable<Array<String>> = this.categories.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -24,13 +30,21 @@ export class StoreService {
       `${this.storeBaseUrl}/products${
         category ? '/category/' + category : ''
       }?sort=${sort}&limit=${limit}`
+    ).pipe(
+      tap((_products) => this.products.next(_products)),
+      take(1),
+      shareReplay()
     );
   }
 
   getCategories(): Observable<Array<String>> {
    return this.httpClient.get<Array<String>>(
     `${this.storeBaseUrl}/products/categories`
-   )
+   ).pipe(
+    tap((_categories) => this.categories.next(_categories)),
+    take(1),
+    shareReplay()
+   );
   }
 
 }
