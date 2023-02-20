@@ -27,16 +27,17 @@ import { ProductBoxComponent } from './pages/home/components/product-box/product
 import { CartComponent } from './pages/cart/cart.component';
 import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
+import { HomeModule } from './pages/home/home.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
-    ProductsHeaderComponent,
-    FiltersComponent,
-    ProductBoxComponent,
+    // HomeComponent,
+    // ProductsHeaderComponent,
+    // FiltersComponent,
+    // ProductBoxComponent,
     CartComponent
   ],
   imports: [
@@ -57,6 +58,7 @@ import { StoreService } from './services/store.service';
     MatSnackBarModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HomeModule
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]
