@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './pages/cart/cart.component';
-import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    loadChildren: () => import('./pages/home/home-routing.module').then(m => m.HomeRoutingModule)
   },
   {
     path: 'cart',
-    component: CartComponent
+    loadChildren: () => import('./pages/cart/cart-routing.module').then(m => m.CartRoutingModule)
   },
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
