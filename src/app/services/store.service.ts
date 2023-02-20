@@ -9,6 +9,7 @@ const STORE_BASE='https://fakestoreapi.com';
   providedIn: 'root'
 })
 export class StoreService {
+  
 
   constructor(
     private httpClient: HttpClient
