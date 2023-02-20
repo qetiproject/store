@@ -28,7 +28,6 @@ export class ProductBoxComponent implements OnInit {
   }
 
   onAddToCart(): void {
-    console.log(this.product, 'product')
     this.addToCart.emit(this.product);
   }
 
