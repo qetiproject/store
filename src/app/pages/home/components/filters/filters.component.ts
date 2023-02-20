@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { StoreService } from 'src/app/services/store.service';
+import { StoreService } from 'src/app/services/index'
 
 @Component({
   selector: 'app-filters',
