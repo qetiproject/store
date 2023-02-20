@@ -19,18 +19,20 @@ export class HeaderComponent implements OnInit {
     return this._cart;
   }
 
-
   set cart(cart: Cart) {
     this._cart = cart;
 
-    this.itemsQuantity = cart.items
-      .map((item) => item.quantity)
-      .reduce((prev, current) => prev + current, 0)
+    this.totalItemsQuantity();
   }
 
   constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  totalItemsQuantity():void {
+    this.itemsQuantity = this.cart.items
+    .map((item) => item.quantity)
+    .reduce((prev, current) => prev + current, 0)
   }
 
   getTotal(items: Array<CartItem>): number {
