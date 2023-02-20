@@ -23,7 +23,7 @@ export class FiltersComponent implements OnInit {
     this.categories$ = this.storeService.getCategories();
   }
 
-  onShowCategory(category: string) : void {
+  onShowCategory(category: any) : void {
     this.showCategory.emit(category);
   }
 
