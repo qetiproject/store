@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+import { STORE_BASE_URL } from '../app-routing.module';
 import { Product } from '../models/product.model';
 
-const STORE_BASE='https://fakestoreapi.com';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ const STORE_BASE='https://fakestoreapi.com';
 export class StoreService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    @Inject(STORE_BASE_URL) private storeBaseUrl: string
   ) { }
 
   getProducts(
@@ -20,7 +21,7 @@ export class StoreService {
     category?: string
   ): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>(
-      `${STORE_BASE}/products${
+      `${this.storeBaseUrl}/products${
         category ? '/category/' + category : ''
       }?sort=${sort}&limit=${limit}`
     );
@@ -28,7 +29,7 @@ export class StoreService {
 
   getCategories(): Observable<Array<String>> {
    return this.httpClient.get<Array<String>>(
-    `${STORE_BASE}/products/categories`
+    `${this.storeBaseUrl}/products/categories`
    )
   }
 
