@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/index';
 
@@ -25,9 +25,7 @@ export class HeaderComponent implements OnInit {
     this.totalItemsQuantity();
   }
 
-  constructor(
-    private cartService: CartService,
-  ) { }
+  private cartService = inject(CartService)
 
   ngOnInit(): void {}
 

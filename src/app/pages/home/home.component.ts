@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { CartService, StoreService } from 'src/app/services/index';
@@ -18,10 +18,8 @@ export class HomeComponent implements OnInit {
   count = '12';
   products$!: Observable<Array<Product>>
 
-  constructor(
-    private cartService: CartService,
-    private storeService: StoreService
-  ) { }
+  private cartService = inject(CartService);
+  private storeService = inject(StoreService);
 
   ngOnInit(): void {
     this.getProducts();

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Cart } from './models/cart.model';
 import { CartService } from './services/index';
 
@@ -10,9 +10,7 @@ import { CartService } from './services/index';
 export class AppComponent {
   cart: Cart = {items: []};
 
-  constructor(
-    private cartService: CartService,
-  ){}
+  private cartService = inject(CartService);
   
   ngOnInit() {
     this.getCart();

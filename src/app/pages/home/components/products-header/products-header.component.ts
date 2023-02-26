@@ -14,9 +14,6 @@ export class ProductsHeaderComponent implements OnInit {
   sort = 'desc';
   itemsShowCount = 12;
 
-
-  constructor() { }
-
   ngOnInit(): void {
   }
 

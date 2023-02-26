@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { StoreService } from 'src/app/services/index'
 
@@ -11,9 +11,7 @@ export class FiltersComponent implements OnInit {
   @Output() showCategory = new EventEmitter<string>;
   categories$!: Observable<Array<String>>;
 
-  constructor(
-    private storeService: StoreService
-  ) { }
+  private storeService = inject(StoreService);
 
   ngOnInit(): void {
     this.getCategories();

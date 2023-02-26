@@ -11,8 +11,6 @@ export class ProductBoxComponent implements OnInit {
   @Input() product: Product | undefined ;
   @Output() addToCart = new EventEmitter();
 
-  constructor() { }
-
   ngOnInit(): void {
   }
 

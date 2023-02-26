@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,10 +33,8 @@ export class SigninComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  private authService = inject(AuthService)
+  private router = inject(Router)
 
   ngOnInit(): void {
     this.signInForm()
