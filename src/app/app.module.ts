@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CartService, StoreService } from './services/index';
 import { HomeModule } from './pages/home/home.module';
 import { MatCardModule } from '@angular/material/card';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './shell/header/header.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   providers: [
     CartService, 
-    StoreService
+    StoreService,
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

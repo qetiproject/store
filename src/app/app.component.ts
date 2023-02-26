@@ -11,11 +11,12 @@ export class AppComponent {
   cart: Cart = {items: []};
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
   ){}
-
+  
   ngOnInit() {
     this.getCart();
+    const user = localStorage.getItem('AUTH_DATA');
   }
   
   getCart() {
